@@ -130,6 +130,187 @@ DB_URI=mongodb://username:password@localhost:27017/ecommerce-test
 ![image](https://github.com/user-attachments/assets/2c1a69a8-29db-4721-9eb2-6473efa09524)
 
 
+#### Access your application on port 5000: localhost:5000
+![image](https://github.com/user-attachments/assets/56f26622-fafb-43bf-a73e-388dd4470ff6)
+
+
+
+
+## Create Frontend Application 
+
+#### Navigate to the webapp directory and initialize a React project: - **cd ../webapp** -  - **npm create vite@latest . --template react** -  - **npm install** - 
+![image](https://github.com/user-attachments/assets/44739b98-cedd-442e-939a-56d4658d7f95)
+
+
+#### Install additional dependencies:   - **npm install axios react-router-dom** -  - **npm install --save-dev jest @testing-library/react** -
+![image](https://github.com/user-attachments/assets/b2e3dc65-64f4-481f-ab76-a58953cc98c0)
+
+
+#### Create the frontend folder structure: - **mkdir src/components src/pages** -
+![image](https://github.com/user-attachments/assets/c93ee551-bdcf-42ab-bdf1-896f6508cc76)
+
+
+#### Add the main frontend entry point: - **src/main.jsx** -
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+#### Add React Router setup: - **src/App.jsx** - 
+import React from 'react'
+import './App.css'
+
+function App() {
+  return (
+    <div className="app">
+      <header>
+        <h1>Welcome to My E-Commerce Platform</h1>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/cart">Cart</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <p>Start building your e-commerce platform here!</p>
+        {/* Add components like ProductList, Navbar, Footer, etc. */}
+      </main>
+      <footer>
+        <p>&copy; 2024 My E-Commerce Platform</p>
+      </footer>
+    </div>
+  )
+}
+
+export default App
+
+#### Create a page component (src/pages/ProductListing.jsx)
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const ProductListing = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/products").then((res) => setProducts(res.data.data));
+  }, []);
+
+  return (
+    <div>
+      <h1>Product Listing</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product._id}>{product.name} - ${product.price}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ProductListing;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
