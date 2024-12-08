@@ -216,9 +216,145 @@ const ProductListing = () => {
 };
 
 export default ProductListing;
+![image](https://github.com/user-attachments/assets/7787a4c3-fadb-466f-a9ce-494053f32089)
+
+#### Test the frontend locally: - **npm run dev** -
+![image](https://github.com/user-attachments/assets/9b4e80e0-9f14-4408-b959-d311b1cd461c)
+
+#### Access the application on localhost:5173
+
+![image](https://github.com/user-attachments/assets/d8b61bbb-e0fe-49c3-adba-20a261970db8)
+
+
+# Create Folder Structure for GitHub Workflows
+
+## GitHub workflows are stored in the .github/workflows/ directory of your repository. Each workflow is defined in a YAML file
+
+
+####  Write workflow for the Frontend Application: Create a directory - **.github/workflows/frontend.yml** -
+name: Frontend CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./webapp
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test
+        working-directory: ./webapp
+
+      # Step 5: Build the application
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./webapp
+
+      # Step 6: Upload build artifacts (optional)
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: ./webapp/dist
 
 
 
+## Write Workflow for the Backend Application: - *.github/workflows/backend-node.yml** -
+name: Backend CI/CD Workflow (Node.js)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./backend
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test
+        working-directory: ./backend
+
+      # Step 5: Start the backend server (optional for deployment)
+      - name: Start backend server
+        run: npm start
+        working-directory: ./backend
+
+##  Test the Workflows by running these commands: -**git add .** -  - **git commit -m "Test workflows"** -**git push origin main** _
+![image](https://github.com/user-attachments/assets/c1af907c-0f80-4d9b-89a6-040bc65d93f2)
+![image](https://github.com/user-attachments/assets/99ae4750-da5c-4661-8f4c-0473321eed0e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+          
 
 
 
